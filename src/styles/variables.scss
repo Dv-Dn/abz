@@ -1,0 +1,48 @@
+@import "mixins";
+// * Colors
+$primary: #ef6c00;
+$secondary: #283593;
+$border: #b7b7b7;
+$grey: #8d8c8c;
+$error: #f44336;
+$hover: #fc831f;
+$black: #000;
+$white: #fff;
+// $inputW: 361px;
+// $inputW2: 556px;
+
+$breakpoints: (
+  sm: 320px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1200px
+);
+
+%img-center {
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center 33%;
+  background-size: cover;
+}
+%p1 {
+  font-size: 18px;
+  line-height: 26px;
+}
+%p2 {
+  font-size: 16px;
+  line-height: 22px;
+}
+%p3 {
+  font-size: 14px;
+  line-height: 20px;
+}
+%input-error {
+  font-size: 12px;
+  position: absolute;
+	margin: 4px 0 0 18px;
+	max-width: 70%;
+  color: $grey;
+  @include respond-to(md) {
+    // margin: 7px 0 0 14px;
+  }
+}

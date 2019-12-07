@@ -28,7 +28,6 @@ export default {
         commit("HEADER_USER_IS_LOADED", false);
       } catch (error) {
         commit("SET_ERROR", error.message);
-        console.log(error);
       }
     }
   },

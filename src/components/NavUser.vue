@@ -46,7 +46,9 @@ export default {
   flex-basis: content;
   flex-direction: column-reverse;
   margin: 30px 0 0 15px;
-
+  @include respond-to(md) {
+    margin: 30px 0 0 24px;
+  }
   @include respond-to(lg) {
     flex-direction: row;
     margin: 0;
@@ -60,16 +62,20 @@ export default {
     }
     p {
       font-size: 20px;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       @include respond-to(lg) {
+        margin-bottom: 2px;
         font-size: 14px;
       }
     }
     span {
       display: block;
-      font-size: 12px;
+      font-size: 13px;
       margin-right: 2px;
       color: $grey;
+      @include respond-to(lg) {
+        font-size: 12px;
+      }
     }
   }
   .headerUser {
@@ -87,14 +93,11 @@ export default {
 
   .IconSignOut {
     display: none;
-    // margin-left: 14px;
-    // margin: 222px;
     padding-left: 6px;
     padding-right: 1px;
 
     @include respond-to(lg) {
       display: block;
-      // margin-left: ;
     }
   }
 }

@@ -16,7 +16,7 @@
         <ul>
           <NavLink :link="i" v-for="(a, i) in links" :key="i" :href="'#' + a" />
           <NavLink
-            link="Sign out"
+            link="Sign Out"
             class="navLink__signOut"
             @onClick="signOut"
           />
@@ -133,23 +133,29 @@ section {
       padding: 0;
       transform: translateX(-250px);
       background-color: #fff;
+      @include respond-to(md) {
+        width: 259px;
+        transform: translateX(-259px);
+      }
     }
     ul {
       display: grid;
       grid-gap: 23px;
-      padding-left: 12px;
-
+      padding-left: 15px;
+			@include respond-to(md){
+				padding-left: 24px;
+			}
       @include respond-to(lg) {
-				display: flex;
-				// width: 90%;
+        display: flex;
+        // width: 90%;
         margin-right: 2px;
         padding-bottom: 4px;
         padding-left: 0;
-			}
-			@include respond-to(xl){
-				padding-left: 3px;
-				padding-bottom: 2px;
-			}
+      }
+      @include respond-to(xl) {
+        padding-left: 3px;
+        padding-bottom: 2px;
+      }
       li {
         @include respond-to(lg) {
           margin-right: 3px;

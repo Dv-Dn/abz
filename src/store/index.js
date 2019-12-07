@@ -13,10 +13,5 @@ export default new Vuex.Store({
   modules: { shared, users, user, signUp, about, nav, banner },
   state: {
     menuIsOpen: false
-  },
-  watch: {
-    ready: function() {
-      console.log("qwe");
-    }
   }
 });

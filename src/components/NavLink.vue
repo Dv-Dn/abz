@@ -1,6 +1,6 @@
 <template>
-  <li :class="{'color_white':white}" @click="$emit('onClick')">
-    <a :href="href" @click="scrollToLink">{{link}}</a>
+  <li :class="{ color_white: white }" @click="$emit('onClick')">
+    <a :href="href" @click="scrollToLink">{{ link }}</a>
   </li>
 </template>
 
@@ -32,11 +32,6 @@ export default {
 
 <style lang="scss" scoped>
 li {
-  // margin: 15px 0;
-
-  // @include respond-to(lg) {
-  //   margin: 0 15px;
-  // }
   a {
     font-size: 16px;
     transition: 0.3s;

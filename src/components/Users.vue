@@ -3,8 +3,8 @@
     <div class="wrap">
       <h2>Our cheerful users</h2>
       <h5>Attention! Sorting users by registration date</h5>
-      <!-- <div v-if="!loading" class="Users"> -->
-      <div class="Users">
+      <div v-if="!loading" class="Users">
+      <!-- <div class="Users"> -->
         <User
           v-for="(a, i) in users"
           :key="i + ' ' + a.id"
@@ -57,7 +57,7 @@
           phone="+38 (095) 283 27 00"
         /> -->
       </div>
-      <!-- <Loader v-else /> -->
+      <Loader v-else />
       <Button
         @onClick="loadMoreUsers"
         secondary

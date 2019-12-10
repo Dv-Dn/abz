@@ -1,7 +1,6 @@
 <template>
   <div class="RelationshipsItem">
     <img :src="require('@/assets/img/'+image+'.svg')" />
-    <!-- <div   :style ="` backgroundImage: require(@/assets/img/${image})` " > -->
     <aside>
       <h3>{{title}}</h3>
       <p>{{text}}</p>
@@ -55,7 +54,6 @@ export default {
     }
     p {
       word-break: keep-all;
-      // white-space: pre-line;
       color: #4c4b4b;
       @extend %p2;
       @include respond-to(lg) {

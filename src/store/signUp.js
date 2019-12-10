@@ -6,14 +6,11 @@ export default {
     optionsIsLoading: false,
     validate: false,
     token: "",
-    answerStatus: "",
-    // formData: {
-    //   position_id: 0,
-    //   name: "",
-    //   email: "",
-    //   phone: "",
-    //   photo: {}
-    // },
+    alert: {
+      title: "Congratulations",
+      text: "You have successfully passed the registration",
+      isOpen: false
+    },
     signup: {
       title1: "Register to get a work",
       title2:
@@ -32,6 +29,9 @@ export default {
     },
     SET_ANSWER_STATUS(state, payload) {
       state.answerStatus = payload;
+    },
+    SET_ALERT_STATUS(state, payload) {
+      state.alert.isOpen = payload;
     }
   },
   actions: {
@@ -58,50 +58,53 @@ export default {
         commit("SET_ERROR", error.message);
       }
     },
-    postUser({ commit, getters, dispatch }, formData) {
-      // axios({
-      //   method: "post",
-      //   url: "https://frontend-test-assignment-api.abz.agency/api/v1/users",
-      //   data: formData,
-      //   headers: {
-      //     Token: getters.get_token
-      //   }
-      // })
-      //   .then(function(response) {
-      //     commit("SET_ANSWER_STATUS", response.status);
-      //     return response.json();
-      //   })
-      //   .then(function(data) {
-      //     if (data.success) {
-      //       dispatch("getUsers");
-      //     } else {
-      //       // proccess server errors
-      //     }
-      //   })
-      //   .catch(function(error) {
-      //     commit("SET_ERROR", error.message);
-      //   });
-      fetch("https://frontend-test-assignment-api.abz.agency/api/v1/users", {
-        method: "POST",
-        body: formData,
+
+    postUser({ commit, getters, dispatch, state }, formData) {
+      axios({
+        method: "post",
+        url: "https://frontend-test-assignment-api.abz.agency/api/v1/users",
+        data: formData,
         headers: {
           Token: getters.get_token
         }
       })
         .then(function(response) {
-          commit("SET_ANSWER_STATUS", response.status);
-          return response.json();
-        })
-        .then(function(data) {
-          if (data.success) {
+          if (response.data.success) {
             dispatch("getUsers");
+            commit("SET_ANSWER_STATUS", response.status);
           } else {
-            // proccess server errors
+            state.alert.title = "Condolences";
+            state.alert.text = "Whoops something went wrong :(";
           }
+          commit("SET_ALERT_STATUS", true);
+          return response.json();
         })
         .catch(function(error) {
           commit("SET_ERROR", error.message);
         });
+      //   fetch("https://frontend-test-assignment-api.abz.agency/api/v1/users", {
+      //     method: "POST",
+      //     body: formData,
+      //     headers: {
+      //       Token: getters.get_token
+      //     }
+      //   })
+      //     .then(function(response) {
+      // 			commit("SET_ANSWER_STATUS", response.status);
+      // 			// *eslint-disable no-console*
+      // 			console.log(response)
+      //       return response.json();
+      //     })
+      //     .then(function(data) {
+      //       if (data.success) {
+      //         dispatch("getUsers");
+      //       } else {
+      //         // proccess server errors
+      //       }
+      //     })
+      //     .catch(function(error) {
+      //       commit("SET_ERROR", error.message);
+      //     });
     }
   },
   getters: {
@@ -117,8 +120,8 @@ export default {
     get_signup(state) {
       return state.signup;
     },
-    get_answer_status(state) {
-      return state.answerStatus;
+    get_alert_info(state) {
+      return state.alert;
     }
   }
 };

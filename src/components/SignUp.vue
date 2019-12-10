@@ -86,10 +86,10 @@
         >Sign Up</Button
       >
       <Alert
-        :title="alert.title"
-        :text="alert.text"
-        v-if="alert.isOpen"
-        @onClick="() => (this.alert.isOpen = false)"
+        :title="this.get_alert_info.title"
+        :text="this.get_alert_info.text"
+        v-if="this.get_alert_info.isOpen"
+        @onClick="alertOnClick"
       />
     </div>
   </section>
@@ -122,12 +122,7 @@ export default {
         // Стартовый тип файла добавлен, чтобы валидатор photo.type изначально был false.(Я скорее всего затупил с условием валидатора)
         type: "image/jpeg"
       },
-      formKey: "signUpForm",
-      alert: {
-        title: "",
-        text: "",
-        isOpen: false
-      }
+      formKey: "signUpForm"
     };
   },
 
@@ -178,17 +173,16 @@ export default {
     // При использовании стандартной проверки $v.photo.$error получаем ошибку, даже если все валидаторы прошли проверку.
     //Следующие 2 функии  используются в качестве альтернативы, в целях обхода бага.
     submitDisabled() {
-      if (
+      return (
         this.$v.name.$invalid ||
         this.$v.email.$invalid ||
         this.$v.phone.$invalid ||
         this.$v.position.$invalid ||
         this.$v.photo.size ||
         this.$v.photo.type ||
-        this.$v.photo.px
-      )
-        return true;
-      return false;
+        this.$v.photo.px ||
+        this.photo.name === undefined
+      );
     },
     photoHasError() {
       if (this.$v.photo.size || this.$v.photo.type || this.$v.photo.px)
@@ -196,7 +190,7 @@ export default {
       else return false;
     },
 
-    // Работа с Vuex
+    // Геттеры
     get_signup() {
       return this.$store.getters.get_signup;
     },
@@ -206,8 +200,11 @@ export default {
     options_is_loading() {
       return this.$store.getters.options_is_loading;
     },
-    get_answer_status() {
+    get_status_text() {
       return this.$store.getters.get_answer_status;
+    },
+    get_alert_info() {
+      return this.$store.getters.get_alert_info;
     }
   },
   mounted: function() {
@@ -238,7 +235,9 @@ export default {
       this.photo = file;
       this.$v.photo.$touch();
     },
-
+    alertOnClick() {
+      this.$store.commit("SET_ALERT_STATUS", false);
+    },
     buttonSubmit() {
       let formData = new FormData();
       formData.append("position_id", this.position);
@@ -257,16 +256,6 @@ export default {
         "_" +
         Math.random() * 100;
       this.$v.$reset();
-
-      // Вывод Alert в зависимости от полученного ответа с сервера.
-      if (this.get_answer_status == "201" || this.get_answer_status == "200") {
-        this.alert.title = "Congratulations";
-        this.alert.text = "You have successfully passed the registration";
-      } else {
-        this.alert.title = "Condolences";
-        this.alert.text = "Whoops something went wrong :(";
-      }
-      this.alert.isOpen = true;
     }
   }
 };
@@ -290,8 +279,8 @@ section {
     margin-bottom: 10px;
   }
   h5 {
-		width: 100%;
-		line-height: 21px;
+    width: 100%;
+    line-height: 21px;
     @include respond-to(md) {
       max-width: 50%;
       margin-top: 22px;

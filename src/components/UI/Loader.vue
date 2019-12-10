@@ -1,5 +1,4 @@
 <template functional>
-  <!-- <div class="lds-css ng-scope"> -->
   <div class="lds-spinner" style="width:100%;height:100%">
     <div></div>
     <div></div>

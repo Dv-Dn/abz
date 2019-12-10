@@ -1,27 +1,16 @@
 <template>
   <section id="requirements">
-    <h2>General requirements for the test task</h2>
+    <h2>{{ this.get_requirements.title }}</h2>
     <div class="wrap">
       <article>
         <p>
-          Users want to find answers to their questions quickly and data shows
-          that people really care about how quickly their pages load. The Search
-          team announced speed would be a ranking signal for desktop searches in
-          2010 and as of this month (July 2018), page speed will be a ranking
-          factor for mobile searches too.
+          {{ this.get_requirements.p1 }}
         </p>
         <p>
-          If you're a developer working on a site, now is a good time to
-          evaluate your performance using our speed tools. Think about how
-          performance affects the user experience of your pages and consider
-          measuring a variety of real-world user-centric performance metrics.
+          {{ this.get_requirements.p2 }}
         </p>
         <p>
-          Are you shipping too much JavaScript? Too many images? Images and
-          JavaScript are the most significant contributors to the page weight
-          that affect page load time based on data from HTTP Archive and the
-          Chrome User Experience Report - our public dataset for key UX metrics
-          as experienced by Chrome users under real-world conditions.
+          {{ this.get_requirements.p3 }}
         </p>
       </article>
       <img class="mobile_img" src="@/assets/img/man-laptop-v1.svg" alt />
@@ -31,7 +20,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    get_requirements() {
+      return this.$store.getters.get_requirements;
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -92,9 +87,6 @@ section {
 
     @include respond-to(lg) {
       justify-content: space-between;
-    }
-    @include respond-to(xl) {
-      // justify-content: flex-start;
     }
 
     article {

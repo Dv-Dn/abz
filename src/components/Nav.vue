@@ -176,8 +176,6 @@ section {
       margin: 24px 0 29px 0;
       color: $border;
 
-      // height: 1px solid;
-
       @include respond-to(lg) {
         display: none;
       }

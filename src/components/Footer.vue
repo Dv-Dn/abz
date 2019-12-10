@@ -119,9 +119,6 @@ footer {
     @include respond-to(md) {
       padding: 30px 0 30px 0;
       flex-direction: row;
-      // align-items: center;
-      // justify-content: center;
-      // height: 85px;
     }
     @include respond-to(xl) {
       padding: 28px 0 30px 0;
@@ -190,15 +187,11 @@ img {
 
     @include respond-to(md) {
       display: grid;
-      // width: 100%;
       grid-gap: 52px;
       justify-content: space-between;
-      // padding-left: 10%;
     }
 
     @include respond-to(lg) {
-      // display: flex;
-      // width: 58%;
       grid-gap: 82px;
       padding-top: 2px;
       padding-bottom: 2px;

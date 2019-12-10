@@ -39,7 +39,6 @@ export default {
     display: none;
     @include respond-to(lg) {
       display: block;
-      // padding-left: 3px;
     }
   }
 }

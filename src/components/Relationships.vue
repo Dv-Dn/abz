@@ -76,10 +76,6 @@ h2 {
   }
   @include respond-to(xl) {
     margin-top: 42px;
-
-    // grid-template-columns: 1fr 2% 1fr;
-    // grid-gap: 40px;
-
   }
 }
 </style>

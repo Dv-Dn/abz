@@ -5,7 +5,7 @@ export default {
       Relationships: "relationships",
       Requirements: "requirements",
       Users: "users",
-      "Sign Up": "signUp"
+			"Sign Up": "signUp"
     }
   },
   getters: {

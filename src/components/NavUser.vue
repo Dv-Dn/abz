@@ -58,13 +58,13 @@ export default {
     @include respond-to(lg) {
       text-align: right;
       margin-right: 6px;
-      padding-bottom: 3px;
+      padding-bottom: 4px;
     }
     p {
       font-size: 20px;
       margin-bottom: 3px;
       @include respond-to(lg) {
-        margin-bottom: 2px;
+        margin-bottom: 0;
         font-size: 14px;
       }
     }

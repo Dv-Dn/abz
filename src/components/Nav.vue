@@ -142,12 +142,15 @@ section {
       display: grid;
       grid-gap: 23px;
       padding-left: 15px;
-			@include respond-to(md){
-				padding-left: 24px;
-			}
+      @include respond-to(md) {
+        padding-left: 24px;
+      }
       @include respond-to(lg) {
+        grid-gap: 0;
         display: flex;
-        // width: 90%;
+				flex:1;
+				// max-width: 52%;
+				justify-content: center;
         margin-right: 2px;
         padding-bottom: 4px;
         padding-left: 0;
@@ -158,8 +161,9 @@ section {
       }
       li {
         @include respond-to(lg) {
-          margin-right: 3px;
-          margin-left: 3px;
+          margin-right: 14px;
+          margin-left: 15px;
+          // margin: 0 14px;
         }
       }
       .navLink__signOut {
@@ -175,7 +179,6 @@ section {
       width: 100%;
       margin: 24px 0 29px 0;
       color: $border;
-
       @include respond-to(lg) {
         display: none;
       }
